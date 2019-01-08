@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+  <input type="hidden" id="url_upload_image" value="{{ route('topics.upload_image') }}">
   <div class="container">
     <div class="col-md-10 offset-md-1">
       <div class="card ">
@@ -71,6 +71,16 @@
     $(document).ready(function() {
       var editor = new Simditor({
         textarea: $('#editor'),
+        upload: {
+          url: $('#url_upload_image').val(),
+          params: {
+            _token: $('meta[name="csrf-token"]').attr('content')
+          },
+          fileKey: 'upload_file',
+          connectionCount: 3,
+          leaveConfirm: '文件上传中，关闭此页面将取消上传。'
+        },
+        pasteImage: true,
       });
     });
   </script>
