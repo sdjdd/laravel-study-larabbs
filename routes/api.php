@@ -20,10 +20,7 @@ $api->version('v1', [
 ], function ($api) {
     $api->post('verificationCodes', 'VerificationCodesController@store')
         ->name('api.verificationCodes.store');
-});
-
-$api->version('v2', function($api) {
-    $api->get('version', function() {
-        return response('this is version v2');
-    });
+    
+    $api->post('users', 'UsersController@store')
+        ->name('api.users.store');
 });
